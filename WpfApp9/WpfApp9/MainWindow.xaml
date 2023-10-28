@@ -38,5 +38,6 @@
         </DataGrid>
         <TextBox x:Name="tbCol" HorizontalAlignment="Left" Margin="34,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
         <Label Content="Кол-во багажей" HorizontalAlignment="Left" Margin="45,22,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAdd" Click="btnAdd_Click" Content="Добавить" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Height="62" Width="106" Margin="0,29,0,0" Grid.Column="2"/>
     </Grid>
 </Window>

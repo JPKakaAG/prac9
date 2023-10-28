@@ -48,8 +48,8 @@ namespace WpfApp9
             List<BaggageData> baggageList = new List<BaggageData>();
 
             // Считайте данные о багаже каждого пассажира
-                for (int i = 0; i < passengerBaggage.Length; i++)
-                {              
+           for (int i = 0; i < passengerBaggage.Length; i++)
+           {              
                     passengerBaggage[i].NumberOfItems = Convert.ToInt32(tbc1.Text);
                     passengerBaggage[i].TotalWeight = Convert.ToDouble(tbc2.Text);
 
@@ -61,8 +61,8 @@ namespace WpfApp9
                     };
                     // Add the baggage data to the list
                     baggageList.Add(baggageData);                
-                    baggageDataGrid.ItemsSource = baggageList;
-                }
+           }
+            baggageDataGrid.ItemsSource = baggageList;
             if (rb1.IsChecked == true) 
             {
                 // Рассчитайте средний вес каждого изделия
@@ -90,6 +90,29 @@ namespace WpfApp9
                     }
                 }
             }            
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            int col = Convert.ToInt32(tbCol.Text);
+
+            // Создайте массив багажа пассажира
+            Baggage[] passengerBaggage = new Baggage[col];
+            List<BaggageData> baggageList = new List<BaggageData>();            
+            
+
+                passengerBaggage[i].NumberOfItems = Convert.ToInt32(tbc1.Text);
+                passengerBaggage[i].TotalWeight = Convert.ToDouble(tbc2.Text);
+
+                BaggageData baggageData = new BaggageData
+                {
+                    BaggageId = i + 1,
+                    NumberOfItems = passengerBaggage[i].NumberOfItems,
+                    TotalWeight = passengerBaggage[i].TotalWeight
+                };
+                // Add the baggage data to the list
+                baggageList.Add(baggageData);
+
         }
     }
 }
