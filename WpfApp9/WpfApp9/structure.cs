@@ -11,4 +11,10 @@ namespace WpfApp9
         public int NumberOfItems;      // Количество вещей
         public double TotalWeight;     // Общий вес вещей
     }
+    public class BaggageData
+    {
+        public int BaggageId { get; set; }
+        public int NumberOfItems { get; set; }
+        public double TotalWeight { get; set; }
+    }
 }

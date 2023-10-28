@@ -24,11 +24,19 @@
         <TextBox x:Name="tbc2" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Margin="20,59,0,0" Height="25"/>
         <Label Grid.Column="1" Content="- кол-во вещей в багажнике" HorizontalAlignment="Left" Margin="204,22,0,0" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="- вес багажа в кг" HorizontalAlignment="Left" Margin="204,53,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbRes" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="356" Height="99" Grid.Column="1"/>
         <Button x:Name="btnRes" Click="btnRes_Click" Content="Решение" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Height="62" Width="106" Margin="0,29,0,0"/>
         <TextBox x:Name="tbRes2" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="356" Height="99" Grid.Column="1"/>
         <RadioButton x:Name="rb1" Content="Средний вес &#xA;багажа" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" IsChecked="False"/>
         <RadioButton x:Name="rb2" Content="Отклонения &#xD;&#xA;от общего среднего &#xD;&#xA;значения в пределах +/- 0,3 кг" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" IsChecked="False" Margin="0,27,0,0"/>
         <TextBox x:Name="tbRes3" HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="356" Height="99" Grid.Column="1"/>
+        <DataGrid x:Name="baggageDataGrid" AutoGenerateColumns="False" Grid.Column="1" Margin="26,106,25,5" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Baggage ID" Binding="{Binding BaggageId}" />
+                <DataGridTextColumn Header="Number of Items" Binding="{Binding NumberOfItems}" />
+                <DataGridTextColumn Header="Total Weight (kg)" Binding="{Binding TotalWeight}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="tbCol" HorizontalAlignment="Left" Margin="34,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <Label Content="Кол-во багажей" HorizontalAlignment="Left" Margin="45,22,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
