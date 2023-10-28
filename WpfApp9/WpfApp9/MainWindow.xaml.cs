@@ -42,21 +42,16 @@ namespace WpfApp9
         private void btnRes_Click(object sender, RoutedEventArgs e)
         {
             int col = Convert.ToInt32(tbCol.Text);
+
             // Создайте массив багажа пассажира
             Baggage[] passengerBaggage = new Baggage[col];
             List<BaggageData> baggageList = new List<BaggageData>();
-            int currentIndex = 0;
-
 
             // Считайте данные о багаже каждого пассажира
-            do
-            {
-                for (int i = 0; i < currentIndex; i++)
+                for (int i = 0; i < passengerBaggage.Length; i++)
                 {              
                     passengerBaggage[i].NumberOfItems = Convert.ToInt32(tbc1.Text);
                     passengerBaggage[i].TotalWeight = Convert.ToDouble(tbc2.Text);
-                    tbc1.Text = "";
-                    tbc2.Text = "";
 
                     BaggageData baggageData = new BaggageData
                     {
@@ -68,8 +63,6 @@ namespace WpfApp9
                     baggageList.Add(baggageData);                
                     baggageDataGrid.ItemsSource = baggageList;
                 }
-                currentIndex++;
-            } while (currentIndex < passengerBaggage.Length);
             if (rb1.IsChecked == true) 
             {
                 // Рассчитайте средний вес каждого изделия
