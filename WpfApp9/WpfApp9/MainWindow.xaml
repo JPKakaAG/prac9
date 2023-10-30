@@ -18,17 +18,15 @@
             <RowDefinition Height="109*"/>
             <RowDefinition Height="108*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnInfo" Click="btnInfo_Click" Grid.Column="2" Content="О программе" HorizontalAlignment="Center" Margin="0,21,0,0" Grid.Row="3" VerticalAlignment="Top" Width="106"/>
-        <Button x:Name="btnExit" Click="btnExit_Click" Grid.Column="2" Content="Выход" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Width="106" Margin="0,54,0,0"/>
+        <Button x:Name="btnInfo" Click="btnInfo_Click" Grid.Column="2" Content="О программе" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" Width="106"/>
+        <Button x:Name="btnExit" Click="btnExit_Click" Grid.Column="2" Content="Выход" HorizontalAlignment="Center" VerticalAlignment="Top" Width="106" Margin="0,59,0,0"/>
         <TextBox x:Name="tbc1" Grid.Column="1" HorizontalAlignment="Left" Margin="20,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Height="26"/>
         <TextBox x:Name="tbc2" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Margin="20,59,0,0" Height="25"/>
         <Label Grid.Column="1" Content="- кол-во вещей в багажнике" HorizontalAlignment="Left" Margin="204,22,0,0" VerticalAlignment="Top"/>
         <Label Grid.Column="1" Content="- вес багажа в кг" HorizontalAlignment="Left" Margin="204,53,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnRes" Click="btnRes_Click" Content="Решение" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Height="62" Width="106" Margin="0,29,0,0"/>
-        <TextBox x:Name="tbRes2" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="356" Height="99" Grid.Column="1"/>
-        <RadioButton x:Name="rb1" Content="Средний вес &#xA;багажа" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" IsChecked="False"/>
-        <RadioButton x:Name="rb2" Content="Отклонения &#xD;&#xA;от общего среднего &#xD;&#xA;значения в пределах +/- 0,3 кг" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" IsChecked="False" Margin="0,27,0,0"/>
-        <TextBox x:Name="tbRes3" HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="356" Height="99" Grid.Column="1"/>
+        <CheckBox x:Name="cb1" Content="Средний вес &#xA;багажа" HorizontalAlignment="Center" Margin="0,38,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbRes3" HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="356" Height="104" Grid.Column="1" Grid.ColumnSpan="2" Margin="232,0,0,0"/>
         <DataGrid x:Name="baggageDataGrid" AutoGenerateColumns="False" Grid.Column="1" Margin="26,106,25,5" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Baggage ID" Binding="{Binding BaggageId}" />
@@ -36,8 +34,21 @@
                 <DataGridTextColumn Header="Total Weight (kg)" Binding="{Binding TotalWeight}" />
             </DataGrid.Columns>
         </DataGrid>
+        <DataGrid x:Name="baggageDataGrid2" AutoGenerateColumns="False" Grid.Column="1" Margin="26,111,25,3" Grid.RowSpan="2" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Baggage ID" Binding="{Binding BaggageId}" />
+                <DataGridTextColumn Header="AverageWeightPerItem" Binding="{Binding AverageWeightPerItem}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <TextBox x:Name="tbCol" HorizontalAlignment="Left" Margin="34,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
         <Label Content="Кол-во багажей" HorizontalAlignment="Left" Margin="45,22,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnAdd" Click="btnAdd_Click" Content="Добавить" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Height="62" Width="106" Margin="0,29,0,0" Grid.Column="2"/>
+        <Button x:Name="btnClear" Click="btnClear_click" Grid.Column="2" Content="Очистить" HorizontalAlignment="Center" Margin="0,29,0,0" Grid.Row="1" VerticalAlignment="Top" Width="106"/>
+        <CheckBox x:Name="cb2" Content="Отклонения &#xA;от общего среднего &#xA;значения в пределах +/- 0,3 кг" HorizontalAlignment="Left" Margin="14,25,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <DataGrid x:Name="baggageDataGrid3" AutoGenerateColumns="False" Grid.Column="1" Margin="26,109,175,2" Grid.RowSpan="2" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Baggage ID" Binding="{Binding BaggageId}" />
+                <DataGridTextColumn Header="Deviation" Binding="{Binding Deviation}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

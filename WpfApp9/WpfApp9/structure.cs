@@ -17,4 +17,15 @@ namespace WpfApp9
         public int NumberOfItems { get; set; }
         public double TotalWeight { get; set; }
     }
+    public class BaggageDataAverageWeightPerItem
+    {
+        public int BaggageId { get; set; }
+        public double AverageWeightPerItem { get; set; }
+
+    }
+    public class BaggageDeviation
+    {
+        public int BaggageId { get; set; }
+        public double Deviation { get; set; }
+    }
 }
