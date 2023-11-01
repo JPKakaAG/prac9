@@ -53,6 +53,7 @@ namespace WpfApp9
                 int i = -1 + count;
                 passengerBaggage[i].NumberOfItems = Convert.ToInt32(tbc1.Text);
                 passengerBaggage[i].TotalWeight = Convert.ToDouble(tbc2.Text);
+                passengerBaggage[i].AverageWeightPerItem = passengerBaggage[i].TotalWeight / passengerBaggage[i].NumberOfItems;
 
                 BaggageData baggageData = new BaggageData
                 {
@@ -73,47 +74,56 @@ namespace WpfApp9
 
             if (cb1.IsChecked == true)
             {
-                List<BaggageDataAverageWeightPerItem> BaggageAverageWeightPerItemList = new List<BaggageDataAverageWeightPerItem>();
-                // Рассчитайте средний вес каждого изделия
-                double totalWeight = 0;
-                double totalItems = 0;
-                int i = -2 + count;
-
-                totalWeight += passengerBaggage[i].TotalWeight;
-                totalItems += passengerBaggage[i].NumberOfItems;
-
-                BaggageDataAverageWeightPerItem baggageAverageWeightPerItem = new BaggageDataAverageWeightPerItem
+                if (baggageDataGrid2.Items.Count < col)
                 {
-                    BaggageId = i + 1,
-                    AverageWeightPerItem = totalWeight / totalItems
-                };
-                BaggageAverageWeightPerItemList.Add(baggageAverageWeightPerItem);
-                baggageDataGrid2.Items.Add(BaggageAverageWeightPerItemList);
+                    List<BaggageDataAverageWeightPerItem> BaggageAverageWeightPerItemList = new List<BaggageDataAverageWeightPerItem>();
+                    // Рассчитайте средний вес каждого изделия
+                    int i = -2 + count;
 
-                if (cb2.IsChecked == true)
-                {
-                    double averageWeightPerItem = passengerBaggage[i].TotalWeight / passengerBaggage[i].NumberOfItems;
-                    List<BaggageDeviation> DeviationList = new List<BaggageDeviation>();
-
-                    BaggageDeviation BaggageDeviation = new BaggageDeviation
+                    BaggageDataAverageWeightPerItem baggageAverageWeightPerItem = new BaggageDataAverageWeightPerItem
                     {
                         BaggageId = i + 1,
-                        Deviation = Math.Abs(averageWeightPerItem - (passengerBaggage[i].TotalWeight / passengerBaggage[i].NumberOfItems))
+                        AverageWeightPerItem = passengerBaggage[i].AverageWeightPerItem
                     };
-                    DeviationList.Add(BaggageDeviation);
-                    baggageDataGrid3.Items.Add(DeviationList);
-
-                    double deviation = Math.Abs(averageWeightPerItem - (passengerBaggage[i].TotalWeight / passengerBaggage[i].NumberOfItems));
-
-                    if (deviation <= 0.3)
+                    BaggageAverageWeightPerItemList.Add(baggageAverageWeightPerItem);
+                    baggageDataGrid2.Items.Add(BaggageAverageWeightPerItemList);
+                }
+                    
+                if (cb2.IsChecked == true)
+                {
+                    if (baggageDataGrid2.Items.Count == col)
                     {
-                        tbRes3.Text = ($"Багаж {i + 1} - Вещей в багаже: {passengerBaggage[i].NumberOfItems}, Вес багажа: {passengerBaggage[i].TotalWeight} кг\r\n");
-                    }
+                        double allItems = 0;
+                        double allWeight = 0;
+                        for (int j = 0; j < col; j++)
+                        {
+                            allItems += passengerBaggage[j].NumberOfItems;
+                            allWeight += passengerBaggage[j].TotalWeight;
+                        }
+                        double AllAverageWeight = allItems / allWeight;
+                        
+                        for (int k = 0; k < col; k++)
+                        {
+                            List<BaggageDeviation> DeviationList = new List<BaggageDeviation>();
 
+                            BaggageDeviation BaggageDeviation = new BaggageDeviation
+                            {
+                                BaggageId = k + 1,
+                                Deviation = Math.Abs(AllAverageWeight - passengerBaggage[k].AverageWeightPerItem)
+                            };
+                            DeviationList.Add(BaggageDeviation);
+                            baggageDataGrid3.Items.Add(DeviationList);
+
+                            double deviation = Math.Abs(AllAverageWeight - passengerBaggage[k].AverageWeightPerItem);
+
+                            if (deviation <= 0.3)
+                            {
+                                lb1.Items.Add($"Багаж {k + 1} - Вещей в багаже: {passengerBaggage[k].NumberOfItems}, Вес багажа: {passengerBaggage[k].TotalWeight} кг");
+                            }
+                        }                      
+                    }                   
                 }
             }
-
-
         }
 
         private void btnClear_click(object sender, RoutedEventArgs e)
@@ -121,6 +131,7 @@ namespace WpfApp9
             baggageDataGrid.Items.Clear();
             baggageDataGrid2.Items.Clear();
             baggageDataGrid3.Items.Clear();
+            lb1.Items.Clear();
             count = 1;
         }
 

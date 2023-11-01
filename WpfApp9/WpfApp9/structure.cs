@@ -10,6 +10,7 @@ namespace WpfApp9
     {
         public int NumberOfItems;      // Количество вещей
         public double TotalWeight;     // Общий вес вещей
+        public double AverageWeightPerItem; // Средний вес
     }
     public class BaggageData
     {

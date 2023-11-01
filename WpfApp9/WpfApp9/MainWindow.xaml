@@ -26,7 +26,6 @@
         <Label Grid.Column="1" Content="- вес багажа в кг" HorizontalAlignment="Left" Margin="204,53,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnRes" Click="btnRes_Click" Content="Решение" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Height="62" Width="106" Margin="0,29,0,0"/>
         <CheckBox x:Name="cb1" Content="Средний вес &#xA;багажа" HorizontalAlignment="Center" Margin="0,38,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbRes3" HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="356" Height="104" Grid.Column="1" Grid.ColumnSpan="2" Margin="232,0,0,0"/>
         <DataGrid x:Name="baggageDataGrid" AutoGenerateColumns="False" Grid.Column="1" Margin="26,106,25,5" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Baggage ID" Binding="{Binding BaggageId}" />
@@ -50,5 +49,6 @@
                 <DataGridTextColumn Header="Deviation" Binding="{Binding Deviation}" />
             </DataGrid.Columns>
         </DataGrid>
+        <ListBox x:Name="lb1" Grid.Column="1" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Margin="232,107,5,2" Grid.RowSpan="2"/>
     </Grid>
 </Window>
